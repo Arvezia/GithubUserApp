@@ -1,12 +1,13 @@
 package com.naufaldy.githubuserapp
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.naufaldy.githubuserapp.databinding.ActivityMainBinding
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), GithubUserAdapter.OnItemClickCallback {
     private lateinit var rvUsers: RecyclerView
     private var users:ArrayList<GithubUser> = arrayListOf()
 
@@ -25,6 +26,14 @@ class MainActivity : AppCompatActivity() {
         val githubUserAdapter = GithubUserAdapter(users)
         rvUsers.adapter = githubUserAdapter
 
-        //githubUserAdapter.setOnItemClickCallback(this)
+        githubUserAdapter.setOnItemClickCallback(this)
+    }
+
+    override fun onItemClicked(data: GithubUser){
+        val moveUser =Intent(this@MainActivity, GithubUserDetail::class.java)
+        moveUser.putExtra(GithubUserDetail.EXTRA_USERNAME, data.username)
+        moveUser.putExtra(GithubUserDetail.EXTRA_NAME, data.name)
+        moveUser.putExtra(GithubUserDetail.EXTRA_PHOTO,data.photo)
+        startActivity(moveUser)
     }
 }

@@ -42,10 +42,14 @@ private val githubUsername = arrayOf(
     val list = arrayListOf<GithubUser>()
             for (
                 position in githubUsername.indices){
-                val githubUser = GithubUser()
-                githubUser.username = githubUsername[position]
-                githubUser.name = githubName[position]
-                githubUser.photo = githubPhoto[position]
+                val githubUser = GithubUser(
+                        githubUsername[position],
+                        githubName[position],
+                        githubPhoto[position]
+                )
+                githubUser.username
+                githubUser.name
+                githubUser.photo
                 list.add(githubUser)
             }
             return list
