@@ -32,9 +32,9 @@ class GithubUserAdapter( private val githubUsers: ArrayList<GithubUser>) : Recyc
         val users=githubUsers[position]
                 Glide.with(holder.itemView.context)
                         .load(users.photo)
-                        .apply(RequestOptions().override(50,70))
+                        .apply(RequestOptions().override(70,100))
                         .into(holder.imgPhoto)
-
+        
         holder.tvUsername.text = users.name
         holder.itemView.setOnClickListener{
         onItemClickCallback.onItemClicked(githubUsers[holder.adapterPosition])
